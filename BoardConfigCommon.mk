@@ -39,6 +39,7 @@ ARCH_ARM_HAVE_ARMV7A := true
 
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
 # Scorpion optimizations
@@ -67,6 +68,7 @@ CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DNO_UPDATE_PREVIEW
 BOARD_HAVE_HTC_FFC := true
 BOARD_NEEDS_MEMORYHEAPPMEM := true
+BOARD_CAMERA_USE_MM_HEAP := true
 TARGET_DISABLE_ARM_PIE := true
 
 # Filesystem
@@ -88,6 +90,8 @@ TARGET_HAVE_BYPASS := false
 TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/htc/msm8660-common/configs/egl.cfg
 BOARD_EGL_NEEDS_LEGACY_FB := true
+# Surfaceflinger acts wierd without this (at least I think so)
+COMMON_GLOBAL_CFLAGS += -DHWC_REMOVE_DEPRECATED_VERSIONS=0
 TARGET_USES_OVERLAY := true
 TARGET_QCOM_HDMI_OUT := true
 TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
